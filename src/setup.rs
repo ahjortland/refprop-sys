@@ -1,3 +1,4 @@
+mod purefld;
 mod satspln;
 mod set_fluids;
 mod set_mixture;
@@ -72,7 +73,7 @@ impl RefpropFunctionLibrary {
     /// # References
     ///
     /// - [REFPROP Documentation - CRITPdll](https://pages.nist.gov/RefProp/documentation.html)
-    pub fn crit_p(z: &[f64]) -> Result<CriticalParameters, RefpropError> {
+    pub fn critical_parameters(z: &[f64]) -> Result<CriticalParameters, RefpropError> {
         // Validate composition slice length
         if z.len() > 20 {
             return Err(RefpropError::InvalidInput(

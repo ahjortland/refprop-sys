@@ -2,7 +2,7 @@ use std::str::Utf8Error;
 use thiserror::Error;
 
 /// Custom error type for REFPROP interactions.
-#[derive(Error, Debug)]
+#[derive(Error, Clone, Debug)]
 pub enum RefpropError {
     /// Represents errors that occur during the initialization of REFPROP.
     #[error("Initialization failed: {0}")]

@@ -5,6 +5,15 @@ use std::{
 
 use crate::{bindings, RefpropError, REFPROP_MUTEX};
 
+pub(crate) fn acquire_lock<'a>() -> Result<MutexGuard<'a, ()>, RefpropError> {
+    let lock = REFPROP_MUTEX
+        .get_or_init(|| Mutex::new(()))
+        .lock()
+        .map_err(|_| RefpropError::MutexPoisoned)?;
+
+    Ok(lock)
+}
+
 pub(crate) fn validate_composition(z: &[f64]) -> Result<(), RefpropError> {
     if z.len() > 20 {
         return Err(RefpropError::InvalidInput(
@@ -19,15 +28,6 @@ pub(crate) fn validate_composition(z: &[f64]) -> Result<(), RefpropError> {
         )));
     }
     Ok(())
-}
-
-pub(crate) fn acquire_lock<'a>() -> Result<MutexGuard<'a, ()>, RefpropError> {
-    let lock = REFPROP_MUTEX
-        .get_or_init(|| Mutex::new(()))
-        .lock()
-        .map_err(|_| RefpropError::MutexPoisoned)?;
-
-    Ok(lock)
 }
 
 /// Checks the REFPROP error code and retrieves the error message if an error is present.

@@ -4,6 +4,7 @@ mod convert_to_mass_quality;
 mod convert_to_mole_fractions;
 mod convert_to_mole_quality;
 pub(crate) mod get_enum;
+mod name;
 mod transport;
 
 /// Represents the output of the `qmole` method.

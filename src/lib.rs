@@ -9,7 +9,10 @@ pub(crate) mod utils;
 use std::sync::{Mutex, OnceLock};
 
 pub use errors::RefpropError;
+pub use flash_routines::FlashOutput;
 pub use misc::get_enum::GetEnumFlag;
+pub use misc::TransportOutput;
+pub use setup::CriticalParameters;
 
 pub(crate) static REFPROP_MUTEX: OnceLock<Mutex<()>> = OnceLock::new();
 
