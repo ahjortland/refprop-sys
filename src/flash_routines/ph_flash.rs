@@ -86,7 +86,7 @@ impl RefpropFunctionLibrary {
         let herr_ptr = herr_buffer.as_mut_ptr();
         let herr_length = 255 as i32;
 
-        // Call TPFLSHdll within unsafe block
+        // Call PHFLSHdll within unsafe block
         unsafe {
             bindings::PHFLSHdll(
                 P_ptr,
